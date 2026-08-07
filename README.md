@@ -36,9 +36,13 @@ node --version    # expect v18+
 
 ```bash
 brew tap hackerwarellc/tap
+brew trust hackerwarellc/tap
 ```
 
 **Expected:** no error. Homebrew clones `github.com/hackerwarellc/homebrew-tap`.
+
+> **Note:** Homebrew 4.6+ requires trusting third-party taps before install. If you see  
+> `Refusing to load formula ... from untrusted tap`, run `brew trust hackerwarellc/tap`.
 
 ### Step 4: Install Continuity
 
@@ -169,6 +173,7 @@ Use a **clean shell** (or temporary directory) so you are not relying on a dev c
 ```bash
 brew untap hackerwarellc/tap 2>/dev/null || true
 brew tap hackerwarellc/tap
+brew trust hackerwarellc/tap
 brew install continuity
 brew test continuity
 
@@ -271,6 +276,7 @@ $(brew --prefix)/bin/continuity-mcp            ← symlink
 
 | Symptom | Fix |
 |---------|-----|
+| `Refusing to load formula ... untrusted tap` | Run `brew trust hackerwarellc/tap`, then retry `brew install continuity`. |
 | `brew tap` 404 | Tap repo must be **`github.com/hackerwarellc/homebrew-tap`** — run `brew tap hackerwarellc/tap`. |
 | `sha256 mismatch` | Re-run `node scripts/update-homebrew-formula.js` after npm publish; push tap repo. |
 | `continuity: command not found` | `brew link continuity` or open a new shell; check `echo $PATH` includes `$(brew --prefix)/bin`. |

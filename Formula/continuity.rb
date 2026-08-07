@@ -30,10 +30,10 @@ class Continuity < Formula
     cli_libexec = libexec/"cli"
     mcp_libexec = libexec/"mcp"
 
-    system "npm", "install", *std_npm_args(cli_libexec)
+    system "npm", "install", *std_npm_args(prefix: cli_libexec)
 
     resource("continuity-mcp").stage do
-      system "npm", "install", *std_npm_args(mcp_libexec)
+      system "npm", "install", *std_npm_args(prefix: mcp_libexec)
     end
 
     bin.install_symlink cli_libexec/"bin/continuity"
