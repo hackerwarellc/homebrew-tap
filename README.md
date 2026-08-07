@@ -50,18 +50,32 @@ brew trust hackerwarellc/tap
 brew install continuity
 ```
 
+If you previously installed via **npm global**, Homebrew may fail to link with “already exists”. Fix:
+
+```bash
+npm uninstall -g @continuity/cli @continuity/mcp   # optional — remove old npm bins
+brew link --overwrite continuity
+```
+
 **Expected:** installs `@continuity/cli` + `@continuity/mcp` from npm tarballs; symlinks `continuity`, `continuity-mcp`, and `continuity-setup` into `/opt/homebrew/bin` (Apple Silicon) or `/usr/local/bin` (Intel).
 
 ### Step 5: Verify
 
 ```bash
-continuity --version
+$(brew --prefix)/bin/continuity --version
 # → 3.5.4 (or current CLI_VERSION in the formula)
 
-which continuity
+which -a continuity
 which continuity-mcp
 
 continuity --help
+```
+
+**PATH note:** If `~/.local/bin/continuity` or an old npm global install appears first in `which -a`, your shell may still run the wrong binary. Prefer the brew path:
+
+```bash
+export PATH="$(brew --prefix)/bin:$PATH"
+# or: hash -r && rehash   # refresh shell command cache
 ```
 
 ### Step 6: Initialize in a project
@@ -277,6 +291,8 @@ $(brew --prefix)/bin/continuity-mcp            ← symlink
 | Symptom | Fix |
 |---------|-----|
 | `Refusing to load formula ... untrusted tap` | Run `brew trust hackerwarellc/tap`, then retry `brew install continuity`. |
+| `Could not symlink bin/continuity` (already exists) | Old npm global install: `brew link --overwrite continuity` or `npm uninstall -g @continuity/cli @continuity/mcp` then reinstall. |
+| Wrong version (`3.5.3` vs brew `3.5.4`) | `which -a continuity` — `~/.local/bin` or npm may win PATH. Use `$(brew --prefix)/bin/continuity` or put `$(brew --prefix)/bin` first in PATH. |
 | `brew tap` 404 | Tap repo must be **`github.com/hackerwarellc/homebrew-tap`** — run `brew tap hackerwarellc/tap`. |
 | `sha256 mismatch` | Re-run `node scripts/update-homebrew-formula.js` after npm publish; push tap repo. |
 | `continuity: command not found` | `brew link continuity` or open a new shell; check `echo $PATH` includes `$(brew --prefix)/bin`. |
