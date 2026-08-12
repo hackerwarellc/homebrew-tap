@@ -117,16 +117,29 @@ Sidebar UI, auto-capture, graphs → [Continuity Ultimate on the Marketplace](ht
 
 The formula source lives in **`continuity-ultimate/homebrew-tap/`** and is mirrored to a standalone GitHub repo.
 
-### Step 1: Publish npm packages first
+### Step 1: Publish npm packages (MCP first, then CLI)
 
 Brew installs from the **npm registry**, not the monorepo. Both must be live:
 
 ```bash
+# One command — MCP → CLI (recommended)
+bash scripts/npm-publish-distribution.sh
+
+# Optional: refresh formula after publish
+bash scripts/npm-publish-distribution.sh --with-homebrew
+
+# Dry-run both packages
+bash scripts/npm-publish-distribution.sh --dry-run
+```
+
+Or run individually:
+
+```bash
+# MCP — marketplace build + publish (run first)
+bash scripts/npm-publish-mcp.sh
+
 # CLI — from continuity-ultimate repo
 bash scripts/npm-publish-cli.sh
-
-# MCP — marketplace build + publish
-bash scripts/npm-publish-mcp.sh
 ```
 
 Confirm on registry:
