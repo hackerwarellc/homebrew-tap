@@ -305,7 +305,7 @@ $(brew --prefix)/bin/continuity-mcp            ← symlink
 ## Alternative: npm (no Homebrew)
 
 ```bash
-npm install -g @continuity/cli@^3.5.0 @continuity/mcp
+npm install -g @continuity/cli@^3.6.0
 ```
 
-Same binaries, different install path (`npm root -g`).
+Same binaries as Homebrew (`continuity` + `continuity-mcp`); `@continuity/mcp` installs automatically.
