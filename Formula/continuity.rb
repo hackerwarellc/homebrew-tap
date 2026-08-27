@@ -9,14 +9,14 @@
 #
 # Bump versions: node scripts/update-homebrew-formula.js (repo root)
 class Continuity < Formula
-  CLI_VERSION = "3.8.2"
+  CLI_VERSION = "3.8.3"
   MCP_VERSION = "3.0.122"
 
   desc "Synthetic memory CLI and MCP server for AI coding assistants"
   homepage "https://getcontinuity.io"
   url "https://registry.npmjs.org/@continuity/cli/-/cli-#{CLI_VERSION}.tgz"
   version CLI_VERSION
-  sha256 "359e9d3b3d66eeddec3d77abbe19a5b9e21d7efcee081d580322826e404830de"
+  sha256 "96e673e8d24c309f6b44c759b24cf3967131f041ec906762f18721e2d9ff73ee"
   license "LicenseRef-Hackerware-Proprietary"
 
   depends_on "node"
