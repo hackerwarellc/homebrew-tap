@@ -63,7 +63,7 @@ brew link --overwrite continuity
 
 ```bash
 $(brew --prefix)/bin/continuity --version
-# → 3.5.8 (or current CLI_VERSION in the formula)
+# → 3.9.0 (or current CLI_VERSION in the formula)
 
 which -a continuity
 which continuity-mcp
