@@ -16,7 +16,7 @@ class Continuity < Formula
   homepage "https://getcontinuity.io"
   url "https://registry.npmjs.org/@continuity/cli/-/cli-#{CLI_VERSION}.tgz"
   version CLI_VERSION
-  sha256 "c8d3eae160a892e32837db3dcae515e843e5383fef52b8141940c8bcf8b6d59f"
+  sha256 "2e569326e87c1482cbbb4d29f1421d2c724289566acd8150f3c962069767d184"
   license "LicenseRef-Hackerware-Proprietary"
 
   depends_on "node"
